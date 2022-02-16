@@ -28,7 +28,6 @@ const Home: NextPage = () => {
         }}>
         <Suspense fallback={null}>
           <ambientLight intensity={0.8} />
-          {/* <directionalLight position={[-2, 5, 2]} intensity={1} /> */}
           <directionalLight
             intensity={1.5}
             castShadow
@@ -36,10 +35,7 @@ const Home: NextPage = () => {
             shadow-mapSize-width={512}
             position={[50, 100, 10]}
           />
-          {/* <OrbitControls /> */}
           <Car scale={2.5} position={[0, 0, 100]} rotation={[0, -0.8, 0]} />
-          {/* <Ferrari scale={0} /> */}
-          {/* </Rotate> */}
         </Suspense>
       </Canvas>
       <Box
