@@ -17,10 +17,6 @@ const Line = styled.div`
   width: 800px;
   height: 20vh;
   margin-top: 16%;
-  /* background: #1378bc; */
-  /* border-left: 20px solid rgba(0, 0, 0, 0.25);
-  border-right: 20px solid rgba(0, 0, 0, 0.25); */
-  /* transform: rotateX(20deg); */
   &::before {
     content: "";
     position: absolute;

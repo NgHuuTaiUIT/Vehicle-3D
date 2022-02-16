@@ -9,7 +9,7 @@ const Title = ({
 }: {
   children: ReactNode;
   size?: number;
-  lineHeight?: number;
+  lineHeight?: number | string;
   sx?: {};
 }) => {
   return (
