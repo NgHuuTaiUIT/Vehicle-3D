@@ -54,7 +54,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 8000);
+    }, 12000);
   }, []);
   return (
     <>
