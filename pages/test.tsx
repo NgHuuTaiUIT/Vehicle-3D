@@ -1,13 +1,28 @@
 import type { NextPage } from "next";
 import Container from "../components/common/container";
-import Footer from "../components/common/footer";
-import MenuIcon from "../components/common/menu-icon";
-
+import Loading from "../components/common/loading";
 const Test: NextPage = () => {
   return (
-    <Container>
-      <Footer />
-    </Container>
+    <>
+      <Loading active={true} />
+
+      <Container>
+        {/* <Canvas
+        // colorManagement
+        camera={{
+          position: [-600, 100, 0],
+          fov: 40
+        }}
+        style={{
+          height: "100%",
+          width: "100%",
+          position: "absolute",
+          left: 0,
+          top: "25%",
+          zIndex: 999
+        }}></Canvas> */}
+      </Container>
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ export default function Model({ ...props }) {
   const rotationRightWheel = [0, 0, 1.6];
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null} castShadow receiveShadow>
       <group rotation={[-Math.PI / 2, 0, 0]} position={posCar}>
         <lineSegments
           geometry={nodes.Material3.geometry}

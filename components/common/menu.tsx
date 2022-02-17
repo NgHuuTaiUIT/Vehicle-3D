@@ -1,14 +1,25 @@
+import { title } from "process";
 import React from "react";
-import { Flex } from "rebass";
+import { Box, Flex } from "rebass";
+import { TrailText } from "../springs/float-text";
 import Title from "./title";
 type Props = {};
 
 const Menu = (props: Props) => {
+  const titles = ["Stores", "Services", "Supports"];
   return (
     <Flex sx={{ flexDirection: "column", gap: "1.8rem" }}>
-      <Title size={12}>Stores</Title>
-      <Title size={12}>Services</Title>
-      <Title size={12}>Supports</Title>
+      {titles.map((title, index) => (
+        <Box key={index}>
+          <TrailText
+            open
+            delay={index * 300}
+            duration={800}
+            sx={{ overflow: "visible" }}>
+            <Title size={12}>{title}</Title>
+          </TrailText>
+        </Box>
+      ))}
     </Flex>
   );
 };
