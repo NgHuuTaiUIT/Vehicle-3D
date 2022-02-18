@@ -1,15 +1,14 @@
 import React from "react";
 import { Box } from "rebass";
 
-const FloatingText = ({ currentScene }: { currentScene: number }) => (
+const FloatingText = ({ scene }: { scene: number }) => (
   <Box
     sx={{
       width: "100%",
       display: "flex",
       justifyContent: "center",
       position: "absolute",
-      bottom:
-        currentScene === 0 ? "-400px" : currentScene === 1 ? "-70px" : "140px",
+      bottom: scene !== 1 ? "-30%" : "-15%",
       transition: "1.5s",
       paddingLeft: "15px"
     }}>

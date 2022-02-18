@@ -8,7 +8,7 @@ type Props = {};
 const Menu = (props: Props) => {
   const titles = ["Stores", "Services", "Supports"];
   return (
-    <Flex sx={{ flexDirection: "column", gap: "1.8rem" }}>
+    <Flex sx={{ flexDirection: "column", gap: "1.8rem", position: "absolute" }}>
       {titles.map((title, index) => (
         <Box key={index}>
           <TrailText

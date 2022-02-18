@@ -1,10 +1,14 @@
 import { BakeShadows } from "@react-three/drei";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
+import { Box } from "rebass";
 import CarModel from "../components/common/car-model";
 import Container from "../components/common/container";
 import Loading from "../components/common/loading";
+import Menu from "../components/common/menu";
+import RightIcon from "../components/common/right-icon";
 import Scene1 from "../components/scene/scene1";
+import Scene2 from "../components/scene/scene2";
 
 function Stage() {
   return (
@@ -51,6 +55,17 @@ function Stage() {
 
 const Home: NextPage = () => {
   const [isLoading, setLoading] = useState(true);
+  const [scene, setScene] = useState(0);
+
+  const updateScene = (scene: number) => {
+    scene + 1 >= 2 ? null : setScene(scene + 1);
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", () => updateScene(scene));
+    return () => document.removeEventListener("click", () => {});
+  }, [scene]);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -60,8 +75,36 @@ const Home: NextPage = () => {
     <>
       <Loading active={isLoading} />
       <Container>
-        <CarModel />
-        {!isLoading && <Scene1 />}
+        <Menu />
+        <RightIcon />
+        <CarModel
+          isStopRun={scene !== 0}
+          rotation={scene !== 0 ? [0, -0.5, 0] : [0, -0.8, 0]}
+          position={scene !== 0 ? [0, -10, -30] : [0, 0, 100]}
+          scale={scene !== 0 ? 2 : 2.5}
+        />
+        {!isLoading && (
+          <>
+            {scene === 0 && <Scene1 />}
+            {scene === 1 && <Scene2 scene={scene} />}
+          </>
+        )}
+
+        {/* <Box
+          sx={{
+            height: "300%",
+            // width: "calc(100% - 50px)",
+            width: "100%",
+            position: "relative",
+            zIndex: 10
+          }}>
+          <Box sx={{ height: "100%" }}>
+            <Scene1 />
+          </Box>
+          <Box sx={{ height: "33%" }}>
+            <Scene2 scene={scene} />
+          </Box>
+        </Box> */}
       </Container>
     </>
   );
