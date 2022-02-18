@@ -25,7 +25,7 @@ const Test: NextPage = () => {
           top: "25%",
           zIndex: 999
         }}></Canvas> */}
-        <Scene2 />
+        {/* <Scene2 /> */}
       </Container>
     </>
   );
