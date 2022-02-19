@@ -74,7 +74,7 @@ const Home: NextPage = () => {
   }, []);
   return (
     <>
-      {/* <Loading active={isLoading} /> */}
+      <Loading active={isLoading} />
       <Container>
         <Menu />
         <RightIcon />
@@ -86,30 +86,26 @@ const Home: NextPage = () => {
           position={scene !== 0 ? [0, -10, -20] : [0, 0, 100]}
           scale={scene !== 0 ? 2 : 2.5}
         />
-        {/* {!isLoading && (
-          <>
-            {scene === 0 && <Scene1 />}
-            {scene === 1 && <Scene2 scene={scene} />}
-          </>
-        )} */}
 
-        <Box
-          sx={{
-            height: "300%",
-            // width: "calc(100% - 50px)",
-            width: "100%",
-            position: "relative",
-            zIndex: 10,
-            transform: `translateY(-${scene * 100}%)`,
-            transition: "all 1.5s ease 0s"
-          }}>
-          <Box sx={{ height: "100%" }}>
-            <Scene1 />
+        {!isLoading && (
+          <Box
+            sx={{
+              height: "300%",
+              // width: "calc(100% - 50px)",
+              width: "100%",
+              position: "relative",
+              zIndex: 10,
+              transform: `translateY(-${scene * 100}%)`,
+              transition: "all 1.5s ease 0s"
+            }}>
+            <Box sx={{ height: "100%" }}>
+              <Scene1 />
+            </Box>
+            <Box sx={{ height: "85%", position: "relative" }}>
+              <Scene2 scene={scene} />
+            </Box>
           </Box>
-          <Box sx={{ height: "85%", position: "relative" }}>
-            <Scene2 scene={scene} />
-          </Box>
-        </Box>
+        )}
       </Container>
     </>
   );
