@@ -19,9 +19,9 @@ const CarModel = ({ scene }: { scene: number }) => {
         width: "100%",
         position: "absolute",
         top: "25%",
-        left: scene !== 1 ? "100%" : "0%",
+        left: scene !== 1 ? "60%" : "0%",
         opacity: scene !== 1 ? "0" : "1",
-        transition: "left 1.5s,opacity 1.5s",
+        transition: "left 1.5s 0.3s ,opacity 1.5s 0.3s ease-out ",
         zIndex: 999
       }}>
       <directionalLight
