@@ -7,6 +7,7 @@ import Container from "../components/common/container";
 import Loading from "../components/common/loading";
 import Menu from "../components/common/menu";
 import RightIcon from "../components/common/right-icon";
+import ScrollBar from "../components/common/scroll-bar";
 import Scene1 from "../components/scene/scene1";
 import Scene2 from "../components/scene/scene2";
 
@@ -73,38 +74,42 @@ const Home: NextPage = () => {
   }, []);
   return (
     <>
-      <Loading active={isLoading} />
+      {/* <Loading active={isLoading} /> */}
       <Container>
         <Menu />
         <RightIcon />
+        <ScrollBar show={scene === 1} />
+
         <CarModel
           isStopRun={scene !== 0}
           rotation={scene !== 0 ? [0, -0.5, 0] : [0, -0.8, 0]}
-          position={scene !== 0 ? [0, -10, -30] : [0, 0, 100]}
+          position={scene !== 0 ? [0, -10, -20] : [0, 0, 100]}
           scale={scene !== 0 ? 2 : 2.5}
         />
-        {!isLoading && (
+        {/* {!isLoading && (
           <>
             {scene === 0 && <Scene1 />}
             {scene === 1 && <Scene2 scene={scene} />}
           </>
-        )}
+        )} */}
 
-        {/* <Box
+        <Box
           sx={{
             height: "300%",
             // width: "calc(100% - 50px)",
             width: "100%",
             position: "relative",
-            zIndex: 10
+            zIndex: 10,
+            transform: `translateY(-${scene * 100}%)`,
+            transition: "all 1.5s ease 0s"
           }}>
           <Box sx={{ height: "100%" }}>
             <Scene1 />
           </Box>
-          <Box sx={{ height: "33%" }}>
+          <Box sx={{ height: "85%", position: "relative" }}>
             <Scene2 scene={scene} />
           </Box>
-        </Box> */}
+        </Box>
       </Container>
     </>
   );

@@ -15,7 +15,16 @@ const Scene1 = (props: Props) => {
           perspective: "10em",
           perspectiveOrigin: "-60% 30%",
           position: "absolute",
-          top: "30%"
+          top: "17%"
+        }}>
+        <Line />
+      </Box>
+      <Box
+        sx={{
+          perspective: "10em",
+          perspectiveOrigin: "-60% 30%",
+          position: "absolute",
+          top: "10%"
         }}>
         <Line />
       </Box>

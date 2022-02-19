@@ -20,7 +20,7 @@ const Scene2 = ({ scene }: { scene: number }) => {
           top: "30%"
         }}></Box>
       <Camping scene={scene} />
-      <ScrollBar />
+      {/* <ScrollBar /> */}
       <FloatingText scene={scene} />
     </>
   );

@@ -20,7 +20,8 @@ const CarModel = ({ scene }: { scene: number }) => {
         position: "absolute",
         top: "25%",
         left: scene !== 1 ? "100%" : "0%",
-        transition: "left 1.5s",
+        opacity: scene !== 1 ? "0" : "1",
+        transition: "left 1.5s,opacity 1.5s",
         zIndex: 999
       }}>
       <directionalLight
@@ -42,13 +43,13 @@ const CarModel = ({ scene }: { scene: number }) => {
 
       <Suspense fallback={null}>
         <Camping
-          scale={140.5}
-          position={[50, 35, 240]}
+          scale={150.5}
+          position={[50, 55, 260]}
           rotation={[-0.05, -2.2, 0]}
         />
         <ambientLight intensity={0.5} />
 
-        <Chair scale={23} rotation={[-0.05, -2, 0]} position={[-100, 50, 70]} />
+        <Chair scale={23} rotation={[-0.05, -2, 0]} position={[-100, 60, 80]} />
       </Suspense>
     </Canvas>
   );

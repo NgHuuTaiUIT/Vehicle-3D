@@ -8,7 +8,7 @@ const FloatingText = ({ scene }: { scene: number }) => (
       display: "flex",
       justifyContent: "center",
       position: "absolute",
-      bottom: scene !== 1 ? "-30%" : "-15%",
+      bottom: scene !== 1 ? "-30%" : "-18%",
       transition: "1.5s",
       paddingLeft: "15px"
     }}>
