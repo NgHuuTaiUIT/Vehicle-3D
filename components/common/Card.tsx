@@ -19,7 +19,6 @@ const imageStyle = {
   position: "absolute",
   inset: 0,
   padding: "0px",
-  border: "none",
   margin: "auto",
   display: "block",
   objectFit: "cover",
