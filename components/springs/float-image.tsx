@@ -3,14 +3,14 @@ import React from "react";
 import { useTrail, animated, useSpring } from "react-spring";
 import Image from "next/image";
 
-export const FloatImage: React.FC<{ open: boolean; sx: {} }> = ({
-  open,
-  children,
-  sx
-}) => {
+export const FloatImage: React.FC<{
+  open: boolean;
+  sx?: {};
+  duration?: number;
+}> = ({ open, children, duration, sx }) => {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
-    config: { mass: 5, tension: 2000, friction: 200 },
+    config: { mass: 5, tension: 2000, friction: 200, duration },
     height: open ? 110 : 0,
     opacity: open ? 1 : 0,
 

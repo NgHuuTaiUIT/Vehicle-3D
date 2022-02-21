@@ -35,13 +35,13 @@ const ForceOverflow = styled.div`
   min-height: 180px;
 `;
 
-const ScrollBar = ({ show }: { show: boolean }) => {
+const ScrollBar = ({ currentScene }: { currentScene: number }) => {
   return (
     <Box
       sx={{
         position: "absolute",
         bottom: 20,
-        opacity: show ? 1 : 0,
+        opacity: currentScene === 0 ? 0 : 1,
         transition: "opacity 1.5s"
       }}>
       <CustomScrollBar>

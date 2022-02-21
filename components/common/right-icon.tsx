@@ -5,8 +5,7 @@ type Props = {};
 
 const RightIcon = (props: Props) => {
   return (
-    <Box
-      sx={{ mt: "0.2rem", pr: "0.6rem", position: "absolute", right: "10%" }}>
+    <Box sx={{ mt: "0.2rem", pr: "0.6rem", position: "absolute", right: "7%" }}>
       <Box
         sx={{
           width: "20px",

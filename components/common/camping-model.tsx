@@ -1,3 +1,4 @@
+import { ContactShadows } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React, { Suspense } from "react";
 import Camping from "../threejs/Camping";
@@ -11,45 +12,44 @@ const CarModel = ({ scene }: { scene: number }) => {
       shadows
       dpr={[1, 1.5]}
       camera={{
-        position: [-600, 100, 0],
+        position: [0, 1, 4],
         fov: 50
       }}
       style={{
         height: "100%",
         width: "100%",
         position: "absolute",
-        top: "25%",
-        left: scene !== 1 ? "60%" : "0%",
-        opacity: scene !== 1 ? "0" : "1",
-        transition: "left 1.5s 0.3s ,opacity 1.5s 0.3s ease-out ",
-        zIndex: 999
+        // top: "25%",
+        // left: scene !== 1 ? "60%" : "15%",
+        left: scene === 2 ? "37%" : "40%",
+        top: scene === 2 ? "-7%" : "-10%",
+        opacity: scene === 0 ? "0" : "1",
+        transition: "left 1.5s 0.3s ,opacity 1.5s 0.3s ease-out,top 0.5s ",
+        zIndex: 1
       }}>
-      <directionalLight
-        intensity={1.5}
-        castShadow
-        shadow-mapSize-height={512}
-        shadow-mapSize-width={512}
-        position={[50, 100, 10]}
-      />
-      <spotLight
-        position={[0, -100, 0]}
-        angle={0.2}
-        penumbra={1}
-        intensity={2.5}
-        castShadow
-        shadow-mapSize={[2048, 2048]}
-      />
-      <ambientLight intensity={0.3} />
-
+      <ambientLight intensity={0.8} />
       <Suspense fallback={null}>
         <Camping
-          scale={150.5}
-          position={[50, 55, 260]}
-          rotation={[-0.05, -2.2, 0]}
+          scale={1}
+          position={[0, 0, -0.5]}
+          rotation={[0, -0.2, 0]}
+          currentScene={scene}
         />
-        <ambientLight intensity={0.5} />
+        <ContactShadows
+          position={[0, -0.1, 0]}
+          width={10}
+          height={10}
+          far={10}
+          rotation={[Math.PI / 2, 0, 0]}
+          blur={1}
+        />
 
-        <Chair scale={23} rotation={[-0.05, -2, 0]} position={[-100, 60, 80]} />
+        <Chair
+          scale={0.15}
+          position={[-0.8, 0.2, 0.5]}
+          rotation={[0, -0.1, 0]}
+          currentScene={scene}
+        />
       </Suspense>
     </Canvas>
   );

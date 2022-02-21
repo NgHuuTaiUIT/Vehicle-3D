@@ -1,31 +1,31 @@
 import type { NextPage } from "next";
+import { useEffect, useState } from "react";
 import Container from "../components/common/container";
-import Loading from "../components/common/loading";
+import Menu from "../components/common/menu";
+import Model3D from "../components/common/model-3d";
+import RightIcon from "../components/common/right-icon";
 import ScrollBar from "../components/common/scroll-bar";
-import FloatingText from "../components/common/text";
-import Camping from "../components/common/camping-model";
-import Scene2 from "../components/scene/scene2";
+import Scenes from "../components/scene";
 const Test: NextPage = () => {
+  const [scene, setScene] = useState(0);
+
+  const updateScene = (scene: number) => {
+    scene + 1 >= 3 ? null : setScene(scene + 1);
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", () => updateScene(scene));
+    return () => document.removeEventListener("click", () => {});
+  }, [scene]);
+
   return (
     <>
-      {/* <Loading active={true} /> */}
-
       <Container>
-        {/* <Canvas
-        // colorManagement
-        camera={{
-          position: [-600, 100, 0],
-          fov: 40
-        }}
-        style={{
-          height: "100%",
-          width: "100%",
-          position: "absolute",
-          left: 0,
-          top: "25%",
-          zIndex: 999
-        }}></Canvas> */}
-        {/* <Scene2 /> */}
+        <Menu />
+        <RightIcon />
+        <ScrollBar currentScene={scene} />
+        <Model3D scene={scene} />
+        <Scenes currentScene={scene} />
       </Container>
     </>
   );

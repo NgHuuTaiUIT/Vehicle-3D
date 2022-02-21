@@ -12,15 +12,6 @@ const Scene2 = ({ scene }: { scene: number }) => {
   return (
     <>
       <Heading heads={["Explore the", "places you love"]} />
-      <Box
-        sx={{
-          perspective: "10em",
-          perspectiveOrigin: "-60% 30%",
-          position: "absolute",
-          top: "30%"
-        }}></Box>
-      <Camping scene={scene} />
-      {/* <ScrollBar /> */}
       <FloatingText scene={scene} />
     </>
   );

@@ -38,11 +38,11 @@ const Line = styled.div`
     animation: ${animationRunway} 10s linear infinite;
   }
 `;
-const LineWrap = () => (
+const LineWrap = ({ perspectiveOrigin }: { perspectiveOrigin: string }) => (
   <Box
     sx={{
       perspective: "10em",
-      perspectiveOrigin: "-60% 30%",
+      perspectiveOrigin: `${perspectiveOrigin}`,
       position: "absolute",
       top: "30%"
     }}>

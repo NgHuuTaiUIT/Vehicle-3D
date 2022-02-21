@@ -6,21 +6,35 @@ source: https://sketchfab.com/3d-models/ferrari-j50-90d2f2fda3234493a1d64bf9fa1b
 title: Ferrari j50
 */
 
-import React, { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import React, { useEffect, useRef, useState } from "react";
+import { useGLTF, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import Wheel from "./Wheel";
+import { useSpring, a } from "@react-spring/three";
 
-export default function Model({ isStopRun, ...props }) {
+export default function Model({ currentScene, isStopRun, ...props }) {
   const group = useRef();
   const { nodes, materials } = useGLTF("/ferrarij50.gltf");
   const wheel = useRef();
-  // useEffect(() => {
+  const [isRotate, setIsRotate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => setIsRotate(true), 2000);
+  }, []);
 
-  // }, [isStopRun])
-  // useFrame((state)=>{
+  useFrame(state => {
+    if (group.current.rotation.y <= 0.2 && isRotate) {
+      group.current.rotation.y += 0.01;
+    }
+  });
 
-  // })
+  const scaleAnimation = useSpring({
+    scale: currentScene === 0 ? 0.2 : currentScene === 1 ? 0.18 : 0.14
+    // from: { scale: 0.2 }
+  });
+  // const scroll = useScroll();
+  // console.log(scroll.offset);
+  // useFrame(() => (group.current.position.z = scroll.offset * 120));
+
   const posCar = [0, 0, 0];
   const posWheel1 = [posCar[0] + 20, posCar[1] + 56, posCar[2] + 17];
   const posWheel2 = [posCar[0] + 20, posCar[1] + 180, posCar[2] + 17];
@@ -30,7 +44,7 @@ export default function Model({ isStopRun, ...props }) {
   const rotationRightWheel = [0, 0, 1.6];
 
   return (
-    <group ref={group} {...props} dispose={null} castShadow receiveShadow>
+    <a.group ref={group} {...props} dispose={null} scale={scaleAnimation.scale}>
       <group rotation={[-Math.PI / 2, 0, 0]} position={posCar}>
         <lineSegments
           geometry={nodes.Material3.geometry}
@@ -269,7 +283,7 @@ export default function Model({ isStopRun, ...props }) {
           material={materials["2018_Ferrari_J50_BrakeLights3"]}
         />
       </group>
-    </group>
+    </a.group>
   );
 }
 

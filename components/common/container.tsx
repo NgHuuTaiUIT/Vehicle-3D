@@ -23,8 +23,8 @@ const Container = ({
         background: `linear-gradient(
           20deg,
           rgba(231, 171, 23, 1) 3%,
-          rgba(211, 183, 44, 1) 40%,
-          rgba(129, 175, 118, 1) 77%
+          rgba(211, 183, 44, 1) 60%,
+          rgba(129, 175, 118, 1) 100%
         )`,
         borderRadius: "20px",
         position: "relative",
