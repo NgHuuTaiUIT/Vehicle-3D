@@ -2,51 +2,29 @@ import styled from "@emotion/styled";
 import React from "react";
 import { Box } from "rebass";
 
-type Props = {};
-const CustomScrollBar = styled.div`
-  /* margin-left: 30px; */
-  float: left;
-  height: 80px;
-  width: 10px;
-  /* background: #f5f5f5; */
-  overflow-y: scroll;
-  margin-bottom: 25px;
-
-  &::-webkit-scrollbar-track {
-    /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1); */
-    border-radius: 10px;
-    background-color: rgba(245, 245, 245, 0.3);
-  }
-
-  &::-webkit-scrollbar {
-    width: 6px;
-    /* background-color: transparent; */
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
-    /* background-color: #555; */
-    background-color: rgba(245, 245, 245, 0.5);
-  }
-`;
-
-const ForceOverflow = styled.div`
-  min-height: 180px;
-`;
-
 const ScrollBar = ({ currentScene }: { currentScene: number }) => {
   return (
     <Box
       sx={{
         position: "absolute",
-        bottom: 20,
+        bottom: 60,
         opacity: currentScene === 0 ? 0 : 1,
-        transition: "opacity 1.5s"
+        transition: "opacity 1.5s",
+        height: "100px",
+        background: "rgba(255,255,255,0.3)",
+        borderRadius: "10px"
       }}>
-      <CustomScrollBar>
-        <ForceOverflow />
-      </CustomScrollBar>
+      <Box
+        sx={{
+          height: "50px",
+          width: "6px",
+          mb: "25px",
+          borderRadius: "10px",
+          background: "rgba(255, 255, 255, 0.5)",
+          transform: currentScene === 2 ? "translateY(100%)" : "translateY(0%)",
+          transition: "transform 0.8s"
+        }}
+      />
     </Box>
   );
 };

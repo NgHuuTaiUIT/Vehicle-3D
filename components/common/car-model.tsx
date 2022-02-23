@@ -25,21 +25,13 @@ const CarModel = ({
       shadows
       dpr={[1, 1.5]}
       camera={{
-        // position: [-600, 100, 0],
         fov: 50,
-        // near: 0.02,
         position: [-25, 8, 25]
-
-        // fov: 40
       }}
       style={{
-        // height: "100%",
-        // width: "100%",
+        height: "100%",
+        width: "100%",
         position: "absolute",
-        // left: isStopRun ? "-15%" : "0%",
-        // left: "0%",
-        // top: "0%",
-        // transition: "left 1s",
         zIndex: 999
       }}>
       <directionalLight
