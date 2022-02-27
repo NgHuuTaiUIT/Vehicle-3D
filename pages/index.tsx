@@ -13,14 +13,19 @@ const Home: NextPage = () => {
   const [isLoading, setLoading] = useState(true);
   const [scene, setScene] = useState(0);
 
-  const updateScene = (scene: number) => {
-    scene + 1 >= 3 ? null : setScene(scene + 1);
+  const updateScene = (scene: number, action: string) => {
+    if (action === "SCROLL_DOWN") {
+      scene + 1 >= 3 ? null : setScene(scene + 1);
+    } else {
+      scene - 1 < 0 ? null : setScene(scene - 1);
+    }
   };
 
-  useEffect(() => {
-    document.addEventListener("click", () => updateScene(scene));
-    return () => document.removeEventListener("click", () => {});
-  }, [scene]);
+  const handleOnWheel = (e: any) => {
+    e.deltaY > 0
+      ? updateScene(scene, "SCROLL_DOWN")
+      : updateScene(scene, "SCROLL_UP");
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,7 +33,7 @@ const Home: NextPage = () => {
     }, 12000);
   }, []);
   return (
-    <>
+    <div onWheel={handleOnWheel}>
       <Loading active={isLoading} />
       <Container>
         <Menu />
@@ -37,7 +42,7 @@ const Home: NextPage = () => {
         <Model3D scene={scene} isLoading={isLoading} />
         {!isLoading && <Scenes currentScene={scene} />}
       </Container>
-    </>
+    </div>
   );
 };
 

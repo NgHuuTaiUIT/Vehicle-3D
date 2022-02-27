@@ -16,14 +16,20 @@ export default function Model({ currentScene, ...props }) {
   const { nodes, materials } = useGLTF("/camping.gltf");
 
   const scaleAnimation = useSpring({
+    config: { duration: 500 },
     scale: currentScene === 2 ? 0.8 : 1
     // from: { scale: 0.2 }
   });
 
   useFrame(state => {
-    group.current.position.x >= -0.2 && currentScene === 2
-      ? (group.current.position.x += -0.1)
-      : null;
+    if (currentScene === 2) {
+      group.current.position.x >= -0.2
+        ? (group.current.position.x += -0.1)
+        : null;
+    } else if (currentScene === 1) {
+      group.current.position.x <= 0 ? (group.current.position.x += 0.1) : null;
+    }
+    console.log(group.current.position.x);
   });
 
   return (

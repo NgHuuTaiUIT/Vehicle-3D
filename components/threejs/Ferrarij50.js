@@ -18,22 +18,27 @@ export default function Model({ currentScene, isStopRun, ...props }) {
   const wheel = useRef();
   const [isRotate, setIsRotate] = useState(false);
   useEffect(() => {
-    setTimeout(() => setIsRotate(true), 2000);
-  }, []);
+    if (currentScene === 0) {
+      setIsRotate(false);
+      setTimeout(() => setIsRotate(true), 2000);
+    }
+  }, [currentScene]);
 
   useFrame(state => {
-    if (group.current.rotation.y <= 0.2 && isRotate) {
-      group.current.rotation.y += 0.01;
+    if (isRotate) {
+      if (group.current.rotation.y <= 0.2) {
+        group.current.rotation.y += 0.01;
+      }
+    } else {
+      group.current.rotation.y >= 0
+        ? (group.current.rotation.y += -0.01)
+        : null;
     }
   });
 
   const scaleAnimation = useSpring({
     scale: currentScene === 0 ? 0.2 : currentScene === 1 ? 0.18 : 0.14
-    // from: { scale: 0.2 }
   });
-  // const scroll = useScroll();
-  // console.log(scroll.offset);
-  // useFrame(() => (group.current.position.z = scroll.offset * 120));
 
   const posCar = [0, 0, 0];
   const posWheel1 = [posCar[0] + 20, posCar[1] + 56, posCar[2] + 17];

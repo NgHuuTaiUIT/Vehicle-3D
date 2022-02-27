@@ -16,12 +16,12 @@ const Scene1 = (props: Props) => {
   );
 };
 
-export const Lines = () => {
+export const Lines = ({ show }: { show: boolean }) => {
   const [perspective, setPerspectiveOrigin] = useState("-25% 30%");
   const [isRotate, setIsRotate] = useState(false);
   useEffect(() => {
-    setTimeout(() => setIsRotate(true), 2000);
-  }, []);
+    show ? setTimeout(() => setIsRotate(true), 2000) : null;
+  }, [show]);
 
   useEffect(() => {
     isRotate
@@ -36,7 +36,8 @@ export const Lines = () => {
           perspective: "10em",
           perspectiveOrigin: "-60% 30%",
           position: "absolute",
-          top: isRotate ? "-3%" : "0%"
+          top: isRotate ? "-3%" : "-3%",
+          transition: "all 0.8s"
         }}>
         <Line perspectiveOrigin={perspective} />
       </Box>
@@ -45,7 +46,8 @@ export const Lines = () => {
           perspective: "10em",
           perspectiveOrigin: "-60% 30%",
           position: "absolute",
-          top: isRotate ? "5%" : "6%"
+          top: isRotate ? "5%" : "4%",
+          transition: "all 0.3s"
         }}>
         {/* <Line /> */}
         <Line perspectiveOrigin={perspective} />

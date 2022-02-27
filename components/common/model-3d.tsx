@@ -30,7 +30,7 @@ const Model3D = ({
       />
 
       <Camping scene={scene} />
-      {scene === 0 && <Lines />}
+      {scene === 0 && <Lines show={!isLoading} />}
     </Box>
   );
 };

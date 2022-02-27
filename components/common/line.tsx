@@ -15,8 +15,10 @@ const animationRunway = keyframes`
 
 const Line = styled.div`
   position: relative;
+  /* width: 800px;
+  height: 20vh; */
   width: 800px;
-  height: 20vh;
+  height: 200px;
   margin-top: 16%;
   &::before {
     content: "";
@@ -44,7 +46,8 @@ const LineWrap = ({ perspectiveOrigin }: { perspectiveOrigin: string }) => (
       perspective: "10em",
       perspectiveOrigin: `${perspectiveOrigin}`,
       position: "absolute",
-      top: "30%"
+      top: "30%",
+      transition: "all 0.3s"
     }}>
     <Box sx={{ position: "relative", transformStyle: "preserve-3d" }}>
       <Box

@@ -2,9 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
 import { Box, Flex } from "rebass";
-import { Card } from "../common/Card";
 import { FloatImage } from "../springs/float-image";
-type Props = {};
 
 const Scene3 = ({ scene }: { scene: number }) => {
   return (
@@ -20,17 +18,19 @@ const Scene3 = ({ scene }: { scene: number }) => {
         alignItems: "end",
         justifyContent: "end"
       }}>
-      <Card
+      <FloatImage
         src="/asset/images/image1.png"
         show={scene === 2}
         duration={800}
         delay={500}
+        pt="40%"
       />
-      <Card
+      <FloatImage
         src="/asset/images/image2.png"
         show={scene === 2}
         duration={800}
         delay={800}
+        pt="40%"
       />
     </Flex>
   );

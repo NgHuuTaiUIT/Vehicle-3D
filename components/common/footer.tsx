@@ -1,10 +1,8 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import Image from "next/image";
 import { Box, Flex } from "rebass";
 import { Float } from "../springs/float";
 import { FloatImage } from "../springs/float-image";
-import { TrailText } from "../springs/float-text";
 import MenuIcon from "./menu-icon";
 import Title from "./title";
 
@@ -82,9 +80,23 @@ const Footer = (props: Props) => {
       <Box sx={{ ml: "12%", mt: "4%" }}>
         <MenuIcon />
       </Box>
-      <FloatImage open={true} sx={{ ml: "21%" }}>
-        <Image src="/asset/images/map.png" alt="Map" height={100} width={180} />
-      </FloatImage>
+
+      <Flex
+        sx={{
+          width: "50%",
+          position: "absolute",
+          bottom: "22%",
+          right: 0,
+          justifyContent: "end"
+        }}>
+        <FloatImage
+          src="/asset/images/map.png"
+          show={true}
+          duration={800}
+          delay={800}
+          pt="60%"
+        />
+      </Flex>
     </Flex>
   );
 };
