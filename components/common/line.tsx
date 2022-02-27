@@ -1,6 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
+import { Box } from "rebass";
 
 const animationRunway = keyframes`
  0%
@@ -17,10 +18,6 @@ const Line = styled.div`
   width: 800px;
   height: 20vh;
   margin-top: 16%;
-  /* background: #1378bc; */
-  /* border-left: 20px solid rgba(0, 0, 0, 0.25);
-  border-right: 20px solid rgba(0, 0, 0, 0.25); */
-  /* transform: rotateX(20deg); */
   &::before {
     content: "";
     position: absolute;
@@ -41,5 +38,22 @@ const Line = styled.div`
     animation: ${animationRunway} 10s linear infinite;
   }
 `;
-
-export default Line;
+const LineWrap = () => (
+  <Box
+    sx={{
+      perspective: "10em",
+      perspectiveOrigin: "-60% 30%",
+      position: "absolute",
+      top: "30%"
+    }}>
+    <Box sx={{ position: "relative", transformStyle: "preserve-3d" }}>
+      <Box
+        sx={{
+          transform: "rotateX(90deg)"
+        }}>
+        <Line />
+      </Box>
+    </Box>
+  </Box>
+);
+export default LineWrap;

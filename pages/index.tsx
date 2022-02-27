@@ -1,65 +1,69 @@
-import { Canvas } from "@react-three/fiber";
+import { BakeShadows } from "@react-three/drei";
 import type { NextPage } from "next";
-import { Suspense } from "react";
+import { useEffect, useState } from "react";
+import CarModel from "../components/common/car-model";
 import Container from "../components/common/container";
-import Footer from "../components/common/footer";
-import Heading from "../components/common/heading";
-import Line from "../components/common/line";
-import Car from "../components/threejs/Ferrarij50";
-import { Box } from "rebass";
+import Loading from "../components/common/loading";
+import Scene1 from "../components/scene/scene1";
+
+function Stage() {
+  return (
+    <>
+      {/* Fill */}
+      <ambientLight intensity={0.5} />
+      <spotLight
+        position={[1, 6, 1.5]}
+        angle={0.2}
+        penumbra={1}
+        intensity={2.5}
+        castShadow
+        shadow-mapSize={[2048, 2048]}
+      />
+      {/* Main */}
+      <directionalLight
+        position={[100, 100, -10]}
+        intensity={1}
+        shadow-camera-far={70}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
+        shadow-mapSize={[512, 512]}
+        castShadow
+        // color="#ff005b"
+      />
+      {/* Strip */}
+      <directionalLight position={[-10, -10, 2]} intensity={3} />
+      {/* Ground */}
+      <mesh
+        castShadow
+        receiveShadow
+        rotation-x={-Math.PI / 2}
+        position={[0, -0.75, 0]}>
+        <planeGeometry args={[20, 20]} />
+        <shadowMaterial opacity={0.2} />
+      </mesh>
+      {/* This freezes the shadow map, which is fast, but the model has to be static  */}
+      <BakeShadows />
+    </>
+  );
+}
 
 const Home: NextPage = () => {
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 8000);
+  }, []);
   return (
-    <Container>
-      <Heading />
-      <Canvas
-        // colorManagement
-        camera={{
-          position: [-600, 100, 0],
-          fov: 40
-        }}
-        style={{
-          height: "100%",
-          width: "100%",
-          position: "absolute",
-          left: 0,
-          top: "25%",
-          zIndex: 999
-        }}>
-        <Suspense fallback={null}>
-          <ambientLight intensity={0.8} />
-          {/* <directionalLight position={[-2, 5, 2]} intensity={1} /> */}
-          <directionalLight
-            intensity={1.5}
-            castShadow
-            shadow-mapSize-height={512}
-            shadow-mapSize-width={512}
-            position={[50, 100, 10]}
-          />
-          {/* <OrbitControls /> */}
-          <Car scale={2.5} position={[0, 0, 100]} rotation={[0, -0.8, 0]} />
-          {/* <Ferrari scale={0} /> */}
-          {/* </Rotate> */}
-        </Suspense>
-      </Canvas>
-      <Box
-        sx={{
-          perspective: "10em",
-          perspectiveOrigin: "-60% 30%",
-          position: "absolute",
-          top: "30%"
-        }}>
-        <Box sx={{ position: "relative", transformStyle: "preserve-3d" }}>
-          <Box
-            sx={{
-              transform: "rotateX(90deg)"
-            }}>
-            <Line />
-          </Box>
-        </Box>
-      </Box>
-      <Footer />
-    </Container>
+    <>
+      <Loading active={isLoading} />
+      <Container>
+        <CarModel />
+        {!isLoading && <Scene1 />}
+      </Container>
+    </>
   );
 };
 
