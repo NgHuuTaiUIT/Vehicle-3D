@@ -1,33 +1,45 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { Suspense, useRef } from "react";
 import Car from "../threejs/Ferrarij50";
+import Camping from "../threejs/Camping";
+
+import { ContactShadows, ScrollControls } from "@react-three/drei";
+import { Lines } from "../scene/scene1";
 type Props = {};
 
 const CarModel = ({
   rotation = [0, -0.8, 0],
   position = [0, 0, 100],
   isStopRun,
-  scale = 2.5
+  scale = 2.5,
+  currentScene
 }: {
   rotation?: number[];
   position?: number[];
   isStopRun?: boolean;
   scale?: number;
+  currentScene: number;
 }) => {
   return (
     <Canvas
       shadows
       dpr={[1, 1.5]}
       camera={{
-        position: [-600, 100, 0],
-        fov: 40
+        // position: [-600, 100, 0],
+        fov: 50,
+        // near: 0.02,
+        position: [-25, 8, 25]
+
+        // fov: 40
       }}
       style={{
-        height: "100%",
-        width: "100%",
+        // height: "100%",
+        // width: "100%",
         position: "absolute",
-        left: 0,
-        top: "25%",
+        // left: isStopRun ? "-15%" : "0%",
+        // left: "0%",
+        // top: "0%",
+        // transition: "left 1s",
         zIndex: 999
       }}>
       <directionalLight
@@ -46,18 +58,24 @@ const CarModel = ({
         shadow-mapSize={[2048, 2048]}
       />
       <ambientLight intensity={0.8} />
-
-      {/* <OrbitControls /> */}
       <Suspense fallback={null}>
-        {/* <Stage /> */}
-
-        {/* <Car scale={1} position={[0, -30, 50]} rotation={[0, -0.65, 0]} /> */}
         <Car
           scale={scale}
+          currentScene={currentScene}
           position={position}
           rotation={rotation}
           isStopRun={isStopRun}
-          // scene={scene}
+        />
+
+        <ContactShadows
+          scale={200}
+          // rotation-x={Math.PI / 2}
+          position={[0, -0.8, 0]}
+          opacity={1}
+          width={2}
+          height={2}
+          blur={1}
+          far={5}
         />
       </Suspense>
     </Canvas>

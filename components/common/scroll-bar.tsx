@@ -4,10 +4,10 @@ import { Box } from "rebass";
 
 type Props = {};
 const CustomScrollBar = styled.div`
-  margin-left: 30px;
+  /* margin-left: 30px; */
   float: left;
-  height: 100px;
-  width: 35px;
+  height: 80px;
+  width: 10px;
   /* background: #f5f5f5; */
   overflow-y: scroll;
   margin-bottom: 25px;
@@ -32,12 +32,18 @@ const CustomScrollBar = styled.div`
 `;
 
 const ForceOverflow = styled.div`
-  min-height: 250px;
+  min-height: 180px;
 `;
 
-const ScrollBar = (props: Props) => {
+const ScrollBar = ({ currentScene }: { currentScene: number }) => {
   return (
-    <Box sx={{ position: "absolute", bottom: 20, left: 0 }}>
+    <Box
+      sx={{
+        position: "absolute",
+        bottom: 20,
+        opacity: currentScene === 0 ? 0 : 1,
+        transition: "opacity 1.5s"
+      }}>
       <CustomScrollBar>
         <ForceOverflow />
       </CustomScrollBar>

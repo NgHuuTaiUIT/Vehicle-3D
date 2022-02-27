@@ -6,20 +6,32 @@ source: https://sketchfab.com/3d-models/folding-chair-29a31e346a0b44659dcc0d939a
 title: Folding Chair
 */
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
+import { useSpring, a } from "@react-spring/three";
 
-export default function Model({ ...props }) {
-  const group = useRef()
-  const { nodes, materials } = useGLTF('/chair.gltf')
+export default function Model({ currentScene, ...props }) {
+  const group = useRef();
+  const { nodes, materials } = useGLTF("/chair.gltf");
+
+  const scaleAnimation = useSpring({
+    scale: currentScene === 2 ? 0.12 : 0.15
+    // from: { scale: 0.2 }
+  });
   return (
-    <group ref={group} {...props} dispose={null}>
+    <a.group ref={group} {...props} dispose={null} scale={scaleAnimation.scale}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh geometry={nodes.Plane_0.geometry} material={materials['Material.001']} />
-        <mesh geometry={nodes.Plane_1.geometry} material={materials.BakedCycles} />
+        <mesh
+          geometry={nodes.Plane_0.geometry}
+          material={materials["Material.001"]}
+        />
+        <mesh
+          geometry={nodes.Plane_1.geometry}
+          material={materials.BakedCycles}
+        />
       </group>
-    </group>
-  )
+    </a.group>
+  );
 }
 
-useGLTF.preload('/chair.gltf')
+useGLTF.preload("/chair.gltf");
