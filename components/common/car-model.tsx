@@ -1,9 +1,19 @@
-import { Canvas } from "@react-three/fiber";
-import React, { Suspense } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import React, { Suspense, useRef } from "react";
 import Car from "../threejs/Ferrarij50";
 type Props = {};
 
-const CarModel = (props: Props) => {
+const CarModel = ({
+  rotation = [0, -0.8, 0],
+  position = [0, 0, 100],
+  isStopRun,
+  scale = 2.5
+}: {
+  rotation?: number[];
+  position?: number[];
+  isStopRun?: boolean;
+  scale?: number;
+}) => {
   return (
     <Canvas
       shadows
@@ -42,7 +52,13 @@ const CarModel = (props: Props) => {
         {/* <Stage /> */}
 
         {/* <Car scale={1} position={[0, -30, 50]} rotation={[0, -0.65, 0]} /> */}
-        <Car scale={2.5} position={[0, 0, 100]} rotation={[0, -0.8, 0]} />
+        <Car
+          scale={scale}
+          position={position}
+          rotation={rotation}
+          isStopRun={isStopRun}
+          // scene={scene}
+        />
       </Suspense>
     </Canvas>
   );

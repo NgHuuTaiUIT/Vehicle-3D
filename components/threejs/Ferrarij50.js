@@ -11,10 +11,16 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import Wheel from "./Wheel";
 
-export default function Model({ ...props }) {
+export default function Model({ isStopRun, ...props }) {
   const group = useRef();
   const { nodes, materials } = useGLTF("/ferrarij50.gltf");
   const wheel = useRef();
+  // useEffect(() => {
+
+  // }, [isStopRun])
+  // useFrame((state)=>{
+
+  // })
   const posCar = [0, 0, 0];
   const posWheel1 = [posCar[0] + 20, posCar[1] + 56, posCar[2] + 17];
   const posWheel2 = [posCar[0] + 20, posCar[1] + 180, posCar[2] + 17];
@@ -161,10 +167,30 @@ export default function Model({ ...props }) {
             material={materials["2018_Ferrari_J50_Lugnuts"]}
           />
         </group> */}
-        <Wheel scale={10} rotation={rotationLeftWheel} position={posWheel1} />
-        <Wheel scale={10} rotation={rotationLeftWheel} position={posWheel2} />
-        <Wheel scale={10} rotation={rotationRightWheel} position={posWheel3} />
-        <Wheel scale={10} rotation={rotationRightWheel} position={posWheel4} />
+        <Wheel
+          scale={10}
+          rotation={rotationLeftWheel}
+          position={posWheel1}
+          isStopRun={isStopRun}
+        />
+        <Wheel
+          scale={10}
+          rotation={rotationLeftWheel}
+          position={posWheel2}
+          isStopRun={isStopRun}
+        />
+        <Wheel
+          scale={10}
+          rotation={rotationRightWheel}
+          position={posWheel3}
+          isStopRun={isStopRun}
+        />
+        <Wheel
+          scale={10}
+          rotation={rotationRightWheel}
+          position={posWheel4}
+          isStopRun={isStopRun}
+        />
 
         <mesh
           geometry={nodes.Material3_8.geometry}

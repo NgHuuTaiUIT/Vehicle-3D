@@ -10,12 +10,12 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
-export default function Model({ ...props }) {
+export default function Model({ isStopRun = false, ...props }) {
   const group = useRef();
   const { nodes, materials } = useGLTF("/wheel.gltf");
   const wheel = useRef();
   useFrame(state => {
-    wheel.current.rotation.y += 0.5;
+    !isStopRun ? (wheel.current.rotation.y += 0.5) : null;
   });
   return (
     <group ref={group} {...props} dispose={null}>
